@@ -20,7 +20,7 @@ constructor(private accountService: AccountService){}
 
   setCurrentUser()
   {
-    // const user: User = JSON.parse(localStorage.getItem('user'));
-    // this.accountService.setCurrentUser(user)
+     const user: User = JSON.parse(localStorage.getItem('user')!);
+     this.accountService.setCurrentUser(user)
   }
 }

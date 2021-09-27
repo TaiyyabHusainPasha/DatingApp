@@ -13,7 +13,7 @@ import { AccountService } from '../_services/account.service';
 })
 export class NavComponent implements OnInit {
   model: any = {}
- // loggedIn: boolean = false;
+  loggedIn: boolean = false;
 
   
   constructor(public accountService: AccountService,private router:Router
@@ -24,10 +24,11 @@ export class NavComponent implements OnInit {
  
   }
   login() {
+    debugger
     this.accountService.login(this.model).subscribe(response => {
       this.router.navigateByUrl('/members')
     //  console.log(response);
-     // this.loggedIn = true;
+      this.loggedIn = true;
     }, error => {
       console.log(error);
       this.toastr.error(error.error);
@@ -38,6 +39,6 @@ export class NavComponent implements OnInit {
   logout() {
     this.accountService.logout();
     this.router.navigateByUrl('/')
-   // this.loggedIn = false
+    this.loggedIn = false
   }
 }

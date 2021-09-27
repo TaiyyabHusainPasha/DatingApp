@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using API.Data;
 using API.Extensions;
 using API.Interfaces;
+using API.Middelware;
 using API.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -38,8 +39,8 @@ namespace API
 
             services.AddControllers();
             services.AddCors();
-            
-           services.AddIdentityServices(_config);
+
+            services.AddIdentityServices(_config);
 
             services.AddSwaggerGen(c =>
             {
@@ -57,15 +58,17 @@ namespace API
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1"));
             }
 
+            // Exception Handling middelware
+            // app.UseMiddleware<ExceptionMiddelware>();
+            
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
-
-           // app.UseCors("AllowAnyCorsPolicy");
+            // app.UseCors("AllowAnyCorsPolicy");
 
             app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200"));
-           
+
             app.UseAuthentication();
             app.UseAuthorization();
 
