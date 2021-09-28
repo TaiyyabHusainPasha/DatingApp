@@ -24,9 +24,10 @@ export class AccountService {
         debugger
         const user = response;
         if (user) {
-          localStorage.setItem('user', JSON.stringify(user));
-          this.currentUserSource.next(user);
-          user.username = 'lisa';
+          this.setCurrentUser(user);
+          // localStorage.setItem('user', JSON.stringify(user));
+          // this.currentUserSource.next(user);
+          // user.username = 'lisa';
           //console.log(this.currentUserSource.next(user));
         }
         debugger
@@ -37,10 +38,9 @@ export class AccountService {
   register(model: any) {
     return this.http.post(this.baseUrl + 'account/register', model).pipe(
       map((user: any) => {
-
+        debugger
         if (user) {
-
-          localStorage.setItem('user', JSON.stringify(user));
+          this.setCurrentUser(user);
           this.currentUserSource.next(user);
 
         }
@@ -51,6 +51,8 @@ export class AccountService {
   }
 
   setCurrentUser(user: User) {
+    localStorage.setItem('user', JSON.stringify(user));
+
     this.currentUserSource.next(user);
   }
 

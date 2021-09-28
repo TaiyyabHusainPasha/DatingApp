@@ -26,7 +26,7 @@ galleryImages!: NgxGalleryImage[];
         imagePercent: 100,
         thumbnailsColumns:4,
         imageAnimation:NgxGalleryAnimation.Slide,
-        preview:false
+        preview:false,
       }
     ]
    
